@@ -12,6 +12,11 @@ parser.add_argument(
 	action="store_true",
 	help="Skip generation and only validate an existing HTML file.",
 )
+parser.add_argument(
+	"--local",  # python ollama_api.py --local
+	action="store_true",
+	help="Use a local W3C validator in Docker instead of the cloud API.",
+)
 args = parser.parse_args()
 
 
@@ -45,7 +50,9 @@ def generate_html(model_name: str, prompt: str, output_path: str):
 
 
 def validate_html(
-	html_path: str, validation_output_path: str = "validation_result.json"
+	html_path: str,
+	validator: str,
+	validation_output_path: str = "validation_result.json",
 ):
 	"""Submit an HTML file to the W3C validator and save the JSON results to disk."""
 	with open(html_path, "rb") as f:
@@ -53,7 +60,7 @@ def validate_html(
 
 	while True:
 		response = requests.post(
-			"https://validator.w3.org/nu/?out=json",
+			validator,
 			headers={
 				"Content-Type": "text/html; charset=utf-8",
 				"User-Agent": "Mozilla/5.0",
@@ -108,6 +115,15 @@ def parse_validation_results(filepath: str):
 
 
 if __name__ == "__main__":
+	cloud_validator = "https://validator.w3.org/nu/?out=json"
+	local_validator = "http://localhost:8888/?out=json"  # requires Docker container: `docker run -p 8888:8888 validator/validator:latest --port 8888`
+	validator = ""
+
+	if args.local:
+		validator = local_validator
+	else:
+		validator = cloud_validator
+
 	if not args.validate_only:
 		prompt = choose_prompt("./prompts/prompts.json")
 
@@ -122,10 +138,10 @@ if __name__ == "__main__":
 		)
 
 		# HTML Validation
-		validation_path = validate_html(output_path)
+		validation_path = validate_html(html_path=output_path, validator=validator)
 		parse_validation_results(validation_path)
 
 	else:
 		file_to_validate = "./html/generated_2026-03-17_13-21-29.html"
-		validation_path = validate_html(file_to_validate)
+		validation_path = validate_html(html_path=file_to_validate, validator=validator)
 		parse_validation_results(validation_path)
