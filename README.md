@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD010 -->
 
-# Readme
+# LLM Generated HTML Code Validator Loop
 
 ## Voorbeeld van feedback-loop die (gedeeltelijk) werkt
 
@@ -24,7 +24,8 @@ De code die initieel gegenereerd werd, bevatte 14 errors en 1 warning. Na het to
     	)
     ```
 
-> [!NOTE] Twee simpele trial-runs met `gemma3:1b` toonde geen verbetering, maar de test met bovenstaande resultaten gebruikte `qwen3:8b`. Ik kan nog niet met zekerheid zeggen waardoor dit verschil komt, wegens het beperkte aantal runs.
+> [!NOTE]
+> Twee simpele trial-runs met `gemma3:1b` toonde geen verbetering, maar de test met bovenstaande resultaten gebruikte `qwen3:8b`. Ik kan nog niet met zekerheid zeggen waardoor dit verschil komt, wegens het beperkte aantal runs.
 
 ```bash
 PS C:\Users\Harman\<project_path>\LLM Validator> python loop.py --local
