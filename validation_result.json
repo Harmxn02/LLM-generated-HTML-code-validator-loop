@@ -57,7 +57,7 @@
             "lastColumn": 9,
             "firstColumn": 3,
             "message": "Element \u201ctitle\u201d not allowed as child of element \u201cbody\u201d in this context. (Suppressing further errors from this subtree.)",
-            "extract": "\n<head>\n  <title>Multi-",
+            "extract": "\n<head>\n  <title>Sticky",
             "hiliteStart": 10,
             "hiliteLength": 7
         },
@@ -67,13 +67,23 @@
             "lastColumn": 9,
             "firstColumn": 3,
             "message": "Element \u201cstyle\u201d not allowed as child of element \u201cbody\u201d in this context. (Suppressing further errors from this subtree.)",
-            "extract": "/title>\n  <style>\n    b",
+            "extract": "/title>\n  <style>\n    /",
             "hiliteStart": 10,
             "hiliteLength": 7
         },
         {
             "type": "error",
-            "lastLine": 41,
+            "lastLine": 14,
+            "lastColumn": 12,
+            "firstColumn": 5,
+            "message": "CSS: Unrecognized at-rule \u201c@restart\u201d",
+            "extract": "SS */\n    @restart {\n   ",
+            "hiliteStart": 10,
+            "hiliteLength": 8
+        },
+        {
+            "type": "error",
+            "lastLine": 97,
             "lastColumn": 7,
             "firstColumn": 1,
             "message": "Stray end tag \u201chead\u201d.",
@@ -83,17 +93,17 @@
         },
         {
             "type": "error",
-            "lastLine": 42,
+            "lastLine": 98,
             "lastColumn": 6,
             "firstColumn": 1,
             "message": "Start tag \u201cbody\u201d seen but an element of the same type was already open.",
-            "extract": ">\n</head>\n<body>\n\n  <h",
+            "extract": ">\n</head>\n<body>\n\n  <d",
             "hiliteStart": 10,
             "hiliteLength": 6
         },
         {
             "type": "error",
-            "lastLine": 109,
+            "lastLine": 126,
             "lastColumn": 3,
             "firstColumn": 1,
             "message": "Non-space character in page trailer.",
@@ -103,32 +113,82 @@
         },
         {
             "type": "error",
-            "lastLine": 126,
-            "lastColumn": 68,
-            "firstColumn": 63,
-            "message": "Start tag \u201cbody\u201d seen but an element of the same type was already open.",
-            "extract": "d of the `<body>`.\n\nHo",
+            "lastLine": 143,
+            "lastColumn": 38,
+            "firstColumn": 32,
+            "message": "Text not allowed in element \u201cul\u201d in this context.",
+            "extract": "Uses `<ul>` and `<li>` ",
             "hiliteStart": 10,
-            "hiliteLength": 6
+            "hiliteLength": 7
         },
         {
             "type": "error",
-            "lastLine": 133,
-            "lastColumn": 300,
+            "lastLine": 156,
+            "lastColumn": 94,
+            "firstColumn": 54,
+            "message": "Text not allowed in element \u201cul\u201d in this context.",
+            "extract": " the `<ul>` elements to suit your website's design.\n*  **",
+            "hiliteStart": 10,
+            "hiliteLength": 41
+        },
+        {
+            "type": "error",
+            "lastLine": 157,
+            "lastColumn": 261,
+            "firstColumn": 1,
+            "message": "Text not allowed in element \u201cul\u201d in this context.",
+            "extract": "s design.\n*  **Sticky Position:**  Consider using `top: 0;` and `left: 0;` and potentially other values (e.g., `right: 0;`) for more precise positioning depending on your design.  However, `fixed` is generally the most common and versatile approach for sticky navigation.\n\nThis",
+            "hiliteStart": 10,
+            "hiliteLength": 261
+        },
+        {
+            "type": "error",
+            "lastLine": 159,
+            "lastColumn": 170,
+            "firstColumn": 1,
+            "message": "Text not allowed in element \u201cul\u201d in this context.",
+            "extract": "igation.\n\nThis improved example provides a good foundation for implementing a sticky sidebar navigation with a responsive design.  Remember to test on different browsers and devices",
+            "hiliteStart": 10,
+            "hiliteLength": 170
+        },
+        {
+            "type": "error",
+            "lastLine": 159,
+            "lastColumn": 172,
+            "firstColumn": 171,
+            "message": "Text not allowed in element \u201cul\u201d in this context.",
+            "extract": "and devices.\n",
+            "hiliteStart": 10,
+            "hiliteLength": 2
+        },
+        {
+            "type": "error",
+            "lastLine": 159,
+            "lastColumn": 173,
             "message": "End of file seen and there were open elements.",
-            "extract": "lex logic.\n",
+            "extract": "d devices.\n",
             "hiliteStart": 10,
             "hiliteLength": 1
         },
         {
             "type": "error",
-            "lastLine": 122,
-            "lastColumn": 32,
-            "firstColumn": 26,
-            "message": "Unclosed element \u201clabel\u201d.",
-            "extract": "s:** The `<label>` elem",
+            "lastLine": 156,
+            "lastColumn": 53,
+            "firstColumn": 50,
+            "message": "Unclosed element \u201cul\u201d.",
+            "extract": "thin the `<ul>` elem",
             "hiliteStart": 10,
-            "hiliteLength": 7
+            "hiliteLength": 4
+        },
+        {
+            "type": "error",
+            "lastLine": 143,
+            "lastColumn": 31,
+            "firstColumn": 28,
+            "message": "Unclosed element \u201cul\u201d.",
+            "extract": ":** Uses `<ul>` and ",
+            "hiliteStart": 10,
+            "hiliteLength": 4
         },
         {
             "type": "info",
