@@ -3,6 +3,7 @@ import json
 import random
 import time
 
+import ollama
 import requests
 
 parser = argparse.ArgumentParser(description="Generate and validate HTML using Ollama.")
@@ -23,42 +24,24 @@ def choose_prompt(file_path: str = "prompts.json"):
 	return prompt_to_use
 
 
-def setup_payload(model_name: str, api_url: str, prompt: str):
-	"""Construct and return the API URL and request payload for the Ollama chat endpoint."""
-	url = api_url if api_url else ValueError("`api_url` is required")
-	payload = {
-		"model": model_name if model_name else ValueError("`model_name` is required"),
-		"messages": [
-			{
-				"role": "user",
-				"content": prompt if prompt else ValueError("`prompt` is required"),
-			}
-		],
-	}
-	return url, payload
+def generate_html(model_name: str, prompt: str, output_path: str):
+	"""Stream a response from a local Ollama model and save the output as an HTML file"""
+	html_output = ""
 
+	stream = ollama.chat(
+		model=model_name,
+		messages=[{"role": "user", "content": prompt}],
+		stream=True,
+	)
 
-def parse_response(response, output_path: str):
-	"""Stream and parse an Ollama API response, printing content and saving it as an HTML file."""
-	if response.status_code == 200:
-		html_output = ""
-		for line in response.iter_lines(decode_unicode=True):
-			if line:
-				try:
-					json_data = json.loads(line)
-					if "message" in json_data and "content" in json_data["message"]:
-						print(json_data["message"]["content"], end="")
-						html_output += json_data["message"]["content"]
-				except json.JSONDecodeError:
-					print(f"Failed to parse line: {line}")
+	for chunk in stream:
+		content = chunk.get("message", {}).get("content", "")
+		print(content, end="", flush=True)
+		html_output += content
 
-		with open(output_path, "w", encoding="utf-8") as f:
-			f.write(html_output)
-		print(f"HTML saved to {output_path}")
-	else:
-		print(
-			f"Failed to get response from Ollama. Status code: {response.status_code}"
-		)
+	with open(output_path, "w", encoding="utf-8") as f:
+		f.write(html_output)
+	print(f"\nHTML saved to {output_path}")
 
 
 def validate_html(
@@ -118,20 +101,17 @@ if __name__ == "__main__":
 	if not args.validate_only:
 		prompt = choose_prompt("./prompts/prompts.json")
 
-		# qwen3:8b, gemma3:1b
-		url, payload = setup_payload(
-			model_name="gemma3:1b",
-			api_url="http://localhost:11434/api/chat",
-			prompt=prompt,
-		)
 		current_time = time.strftime("%Y-%m-%d_%H-%M-%S", time.localtime())
 		output_path = f"./html/generated_{current_time}.html"
 
 		# HTML Generation
-		response = requests.post(url, json=payload, stream=True)
-		parse_response(response, output_path)
+		generate_html(
+			model_name="gemma3:1b",  # qwen3:8b, gemma3:1b
+			prompt=prompt,
+			output_path=output_path,
+		)
 
-		# Validation
+		# HTML Validation
 		validation_path = validate_html(output_path)
 		parse_validation_results(validation_path)
 

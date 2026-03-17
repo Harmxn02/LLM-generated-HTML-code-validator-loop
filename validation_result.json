@@ -57,43 +57,23 @@
             "lastColumn": 9,
             "firstColumn": 3,
             "message": "Element \u201ctitle\u201d not allowed as child of element \u201cbody\u201d in this context. (Suppressing further errors from this subtree.)",
-            "extract": "\n<head>\n  <title>Video ",
+            "extract": "\n<head>\n  <title>Multi-",
             "hiliteStart": 10,
             "hiliteLength": 7
         },
         {
             "type": "error",
             "lastLine": 6,
-            "lastColumn": 72,
-            "firstColumn": 3,
-            "message": "Attribute \u201cname\u201d not allowed on element \u201cmeta\u201d at this point.",
-            "extract": "/title>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <st",
-            "hiliteStart": 10,
-            "hiliteLength": 70
-        },
-        {
-            "type": "error",
-            "lastLine": 6,
-            "lastColumn": 72,
-            "firstColumn": 3,
-            "message": "Element \u201cmeta\u201d is missing one or more of the following attributes: \u201citemprop\u201d, \u201cproperty\u201d.",
-            "extract": "/title>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <st",
-            "hiliteStart": 10,
-            "hiliteLength": 70
-        },
-        {
-            "type": "error",
-            "lastLine": 7,
             "lastColumn": 9,
             "firstColumn": 3,
             "message": "Element \u201cstyle\u201d not allowed as child of element \u201cbody\u201d in this context. (Suppressing further errors from this subtree.)",
-            "extract": "e=1.0\">\n  <style>\n    b",
+            "extract": "/title>\n  <style>\n    b",
             "hiliteStart": 10,
             "hiliteLength": 7
         },
         {
             "type": "error",
-            "lastLine": 43,
+            "lastLine": 41,
             "lastColumn": 7,
             "firstColumn": 1,
             "message": "Stray end tag \u201chead\u201d.",
@@ -103,26 +83,17 @@
         },
         {
             "type": "error",
-            "lastLine": 44,
+            "lastLine": 42,
             "lastColumn": 6,
             "firstColumn": 1,
             "message": "Start tag \u201cbody\u201d seen but an element of the same type was already open.",
-            "extract": ">\n</head>\n<body>\n\n  <d",
+            "extract": ">\n</head>\n<body>\n\n  <h",
             "hiliteStart": 10,
             "hiliteLength": 6
         },
         {
             "type": "error",
-            "lastLine": 47,
-            "lastColumn": 59,
-            "message": "Duplicate attribute \u201cmuted\u201d.",
-            "extract": "uted loop muted>\n      <source",
-            "hiliteStart": 15,
-            "hiliteLength": 1
-        },
-        {
-            "type": "error",
-            "lastLine": 94,
+            "lastLine": 109,
             "lastColumn": 3,
             "firstColumn": 1,
             "message": "Non-space character in page trailer.",
@@ -132,13 +103,32 @@
         },
         {
             "type": "error",
-            "lastLine": 107,
-            "lastColumn": 37,
-            "firstColumn": 30,
-            "message": "Element \u201csource\u201d not allowed as child of element \u201cbody\u201d in this context. (Suppressing further errors from this subtree.)",
-            "extract": "Uses the `<source>` tag ",
+            "lastLine": 126,
+            "lastColumn": 68,
+            "firstColumn": 63,
+            "message": "Start tag \u201cbody\u201d seen but an element of the same type was already open.",
+            "extract": "d of the `<body>`.\n\nHo",
             "hiliteStart": 10,
-            "hiliteLength": 8
+            "hiliteLength": 6
+        },
+        {
+            "type": "error",
+            "lastLine": 133,
+            "lastColumn": 300,
+            "message": "End of file seen and there were open elements.",
+            "extract": "lex logic.\n",
+            "hiliteStart": 10,
+            "hiliteLength": 1
+        },
+        {
+            "type": "error",
+            "lastLine": 122,
+            "lastColumn": 32,
+            "firstColumn": 26,
+            "message": "Unclosed element \u201clabel\u201d.",
+            "extract": "s:** The `<label>` elem",
+            "hiliteStart": 10,
+            "hiliteLength": 7
         },
         {
             "type": "info",
