@@ -1,8 +1,17 @@
+import argparse
 import json
 import random
 import time
 
 import requests
+
+parser = argparse.ArgumentParser(description="Generate and validate HTML using Ollama.")
+parser.add_argument(
+	"--validate-only",  # python ollama_api.py --validate-only
+	action="store_true",
+	help="Skip generation and only validate an existing HTML file.",
+)
+args = parser.parse_args()
 
 
 def choose_prompt(file_path: str = "prompts.json"):
@@ -106,21 +115,27 @@ def parse_validation_results(filepath: str):
 
 
 if __name__ == "__main__":
-	prompt = choose_prompt("./prompts/prompts.json")
+	if not args.validate_only:
+		prompt = choose_prompt("./prompts/prompts.json")
 
-	# qwen3:8b
-	url, payload = setup_payload(
-		model_name="gemma3:1b",
-		api_url="http://localhost:11434/api/chat",
-		prompt=prompt,
-	)
-	current_time = time.strftime("%Y-%m-%d_%H-%M-%S", time.localtime())
-	output_path = f"./html/generated_{current_time}.html"
+		# qwen3:8b, gemma3:1b
+		url, payload = setup_payload(
+			model_name="gemma3:1b",
+			api_url="http://localhost:11434/api/chat",
+			prompt=prompt,
+		)
+		current_time = time.strftime("%Y-%m-%d_%H-%M-%S", time.localtime())
+		output_path = f"./html/generated_{current_time}.html"
 
-	# API CALL
-	response = requests.post(url, json=payload, stream=True)
-	parse_response(response, output_path)
+		# HTML Generation
+		response = requests.post(url, json=payload, stream=True)
+		parse_response(response, output_path)
 
-	# VALIDATION
-	validation_path = validate_html(output_path)
-	parse_validation_results(validation_path)
+		# Validation
+		validation_path = validate_html(output_path)
+		parse_validation_results(validation_path)
+
+	else:
+		file_to_validate = "./html/generated_2026-03-17_13-21-29.html"
+		validation_path = validate_html(file_to_validate)
+		parse_validation_results(validation_path)
