@@ -1,7 +1,7 @@
 import ollama
 
 
-def generate_html(model_name: str, prompt: str, output_path: str) -> None:
+def generate_html(model_name: str, prompt: str, output_path: str, print_code: bool=False) -> None:
 	"""Stream a response from a local Ollama model and save the output as an HTML file."""
 	html_output = ""
 
@@ -13,7 +13,8 @@ def generate_html(model_name: str, prompt: str, output_path: str) -> None:
 
 	for chunk in stream:
 		content = chunk.get("message", {}).get("content", "")
-		print(content, end="", flush=True)
+		if print_code:
+			print(content, end="", flush=True)
 		html_output += content
 
 	with open(output_path, "w", encoding="utf-8") as f:
