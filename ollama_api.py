@@ -51,14 +51,24 @@ def validate_html(
 	with open(html_path, "rb") as f:
 		html_content = f.read()
 
-	response = requests.post(
-		"https://validator.w3.org/nu/?out=json",
-		headers={
-			"Content-Type": "text/html; charset=utf-8",
-			"User-Agent": "Mozilla/5.0",
-		},
-		data=html_content,
-	)
+	while True:
+		response = requests.post(
+			"https://validator.w3.org/nu/?out=json",
+			headers={
+				"Content-Type": "text/html; charset=utf-8",
+				"User-Agent": "Mozilla/5.0",
+			},
+			data=html_content,
+		)
+
+		if response.status_code == 200:
+			break
+
+		print(f"Request failed with status code {response.status_code}.")
+		for i in range(5, 0, -1):
+			print(f"Retrying in {i} seconds", end="\r", flush=True)
+			time.sleep(1)
+		print()
 
 	result = response.json()
 

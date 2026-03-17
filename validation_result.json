@@ -57,33 +57,43 @@
             "lastColumn": 9,
             "firstColumn": 3,
             "message": "Element \u201ctitle\u201d not allowed as child of element \u201cbody\u201d in this context. (Suppressing further errors from this subtree.)",
-            "extract": "\n<head>\n  <title>Sticky",
+            "extract": "\n<head>\n  <title>Video ",
             "hiliteStart": 10,
             "hiliteLength": 7
         },
         {
             "type": "error",
             "lastLine": 6,
+            "lastColumn": 72,
+            "firstColumn": 3,
+            "message": "Attribute \u201cname\u201d not allowed on element \u201cmeta\u201d at this point.",
+            "extract": "/title>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <st",
+            "hiliteStart": 10,
+            "hiliteLength": 70
+        },
+        {
+            "type": "error",
+            "lastLine": 6,
+            "lastColumn": 72,
+            "firstColumn": 3,
+            "message": "Element \u201cmeta\u201d is missing one or more of the following attributes: \u201citemprop\u201d, \u201cproperty\u201d.",
+            "extract": "/title>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <st",
+            "hiliteStart": 10,
+            "hiliteLength": 70
+        },
+        {
+            "type": "error",
+            "lastLine": 7,
             "lastColumn": 9,
             "firstColumn": 3,
             "message": "Element \u201cstyle\u201d not allowed as child of element \u201cbody\u201d in this context. (Suppressing further errors from this subtree.)",
-            "extract": "/title>\n  <style>\n    /",
+            "extract": "e=1.0\">\n  <style>\n    b",
             "hiliteStart": 10,
             "hiliteLength": 7
         },
         {
             "type": "error",
-            "lastLine": 14,
-            "lastColumn": 12,
-            "firstColumn": 5,
-            "message": "CSS: Unrecognized at-rule \u201c@restart\u201d",
-            "extract": "SS */\n    @restart {\n   ",
-            "hiliteStart": 10,
-            "hiliteLength": 8
-        },
-        {
-            "type": "error",
-            "lastLine": 97,
+            "lastLine": 43,
             "lastColumn": 7,
             "firstColumn": 1,
             "message": "Stray end tag \u201chead\u201d.",
@@ -93,7 +103,7 @@
         },
         {
             "type": "error",
-            "lastLine": 98,
+            "lastLine": 44,
             "lastColumn": 6,
             "firstColumn": 1,
             "message": "Start tag \u201cbody\u201d seen but an element of the same type was already open.",
@@ -103,7 +113,16 @@
         },
         {
             "type": "error",
-            "lastLine": 126,
+            "lastLine": 47,
+            "lastColumn": 59,
+            "message": "Duplicate attribute \u201cmuted\u201d.",
+            "extract": "uted loop muted>\n      <source",
+            "hiliteStart": 15,
+            "hiliteLength": 1
+        },
+        {
+            "type": "error",
+            "lastLine": 94,
             "lastColumn": 3,
             "firstColumn": 1,
             "message": "Non-space character in page trailer.",
@@ -113,82 +132,13 @@
         },
         {
             "type": "error",
-            "lastLine": 143,
-            "lastColumn": 38,
-            "firstColumn": 32,
-            "message": "Text not allowed in element \u201cul\u201d in this context.",
-            "extract": "Uses `<ul>` and `<li>` ",
+            "lastLine": 107,
+            "lastColumn": 37,
+            "firstColumn": 30,
+            "message": "Element \u201csource\u201d not allowed as child of element \u201cbody\u201d in this context. (Suppressing further errors from this subtree.)",
+            "extract": "Uses the `<source>` tag ",
             "hiliteStart": 10,
-            "hiliteLength": 7
-        },
-        {
-            "type": "error",
-            "lastLine": 156,
-            "lastColumn": 94,
-            "firstColumn": 54,
-            "message": "Text not allowed in element \u201cul\u201d in this context.",
-            "extract": " the `<ul>` elements to suit your website's design.\n*  **",
-            "hiliteStart": 10,
-            "hiliteLength": 41
-        },
-        {
-            "type": "error",
-            "lastLine": 157,
-            "lastColumn": 261,
-            "firstColumn": 1,
-            "message": "Text not allowed in element \u201cul\u201d in this context.",
-            "extract": "s design.\n*  **Sticky Position:**  Consider using `top: 0;` and `left: 0;` and potentially other values (e.g., `right: 0;`) for more precise positioning depending on your design.  However, `fixed` is generally the most common and versatile approach for sticky navigation.\n\nThis",
-            "hiliteStart": 10,
-            "hiliteLength": 261
-        },
-        {
-            "type": "error",
-            "lastLine": 159,
-            "lastColumn": 170,
-            "firstColumn": 1,
-            "message": "Text not allowed in element \u201cul\u201d in this context.",
-            "extract": "igation.\n\nThis improved example provides a good foundation for implementing a sticky sidebar navigation with a responsive design.  Remember to test on different browsers and devices",
-            "hiliteStart": 10,
-            "hiliteLength": 170
-        },
-        {
-            "type": "error",
-            "lastLine": 159,
-            "lastColumn": 172,
-            "firstColumn": 171,
-            "message": "Text not allowed in element \u201cul\u201d in this context.",
-            "extract": "and devices.\n",
-            "hiliteStart": 10,
-            "hiliteLength": 2
-        },
-        {
-            "type": "error",
-            "lastLine": 159,
-            "lastColumn": 173,
-            "message": "End of file seen and there were open elements.",
-            "extract": "d devices.\n",
-            "hiliteStart": 10,
-            "hiliteLength": 1
-        },
-        {
-            "type": "error",
-            "lastLine": 156,
-            "lastColumn": 53,
-            "firstColumn": 50,
-            "message": "Unclosed element \u201cul\u201d.",
-            "extract": "thin the `<ul>` elem",
-            "hiliteStart": 10,
-            "hiliteLength": 4
-        },
-        {
-            "type": "error",
-            "lastLine": 143,
-            "lastColumn": 31,
-            "firstColumn": 28,
-            "message": "Unclosed element \u201cul\u201d.",
-            "extract": ":** Uses `<ul>` and ",
-            "hiliteStart": 10,
-            "hiliteLength": 4
+            "hiliteLength": 8
         },
         {
             "type": "info",
