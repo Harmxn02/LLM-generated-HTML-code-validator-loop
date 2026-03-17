@@ -6,6 +6,8 @@
 
 Bij deze run werden initieel 5 errors gevonden, maar na het toepassen van 1 feedback-loop, zijn alle errors opgelost en zijn er 0 warnings. De feedback-loop lijkt hier dus volledig te werken.
 
+Je kan de volledige output hieronder bekijken, of in dit bestand: [./logs/Full.txt](./logs/Full.txt)
+
 ``` powershell
 PS C:\Users\Harman\<project_path>\LLM Validator> python main.py --local
 
@@ -89,6 +91,8 @@ De code die initieel gegenereerd werd, bevatte 14 errors en 1 warning. Na het to
 
 > [!NOTE]
 > Twee simpele trial-runs met `gemma3:1b` toonde geen verbetering, maar de test met bovenstaande resultaten gebruikte `qwen3:8b`. Ik kan nog niet met zekerheid zeggen waardoor dit verschil komt, wegens het beperkte aantal runs.
+
+Je kan de volledige output hieronder bekijken, of in dit bestand: [./logs/Partial.txt](./logs/Partial.txt)
 
 ``` powershell
 PS C:\Users\Harman\<project_path>\LLM Validator> python loop.py --local
