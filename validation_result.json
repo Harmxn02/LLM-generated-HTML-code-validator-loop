@@ -1,0 +1,17 @@
+{
+    "version": "26.3.17",
+    "messages": [
+        {
+            "type": "info",
+            "lastLine": 2,
+            "firstLine": 1,
+            "lastColumn": 6,
+            "firstColumn": 16,
+            "subType": "warning",
+            "message": "Consider adding a \u201clang\u201d attribute to the \u201chtml\u201d start tag to declare the language of this document.",
+            "extract": "type html>\n<html>\n\t<hea",
+            "hiliteStart": 10,
+            "hiliteLength": 7
+        }
+    ]
+}

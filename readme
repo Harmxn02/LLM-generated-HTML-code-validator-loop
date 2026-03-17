@@ -1,0 +1,57 @@
+# Readme
+
+Dus het heeft daadwerkelijk iets gegenereerd met de moeilijke prompt
+maar er zitten immens veel fouten in
+
+Dit is eigenlijk goed, omdat dit is waar het project om draait
+Nu kan ik kijken of het de fouten oplost met een vervolg prompt
+
+HET DOEL van de moeilijke prompt (of elke prompt eig) is niet om correcte code te krijgen die
+werkelijk hetgeen wat gevraagd werd implementeerd. Het doel is om code te genereren die zulke
+moeilijke en complexe syntax heeft, dat de LLM meerdere stylistische fouten ZAL maken
+
+En dat is dus degelijk gebeurt
+
+``` bash
+Validation results saved to validation_result.json
+==================================================
+Errors:   32
+Warnings: 0
+Info:     0
+==================================================
+
+[ERROR] Line 266, Col 8: Stray end tag “think”.   
+[ERROR] Line 266, Col 8: Stray end tag “think”.   
+[ERROR] Line 268, Col 8: Stray end tag “think”.   
+[ERROR] Line 277, Col 15: Stray doctype.
+[ERROR] Line 278, Col 16: Stray start tag “html”. 
+[ERROR] Line 279, Col 6: Stray start tag “head”.
+[ERROR] Line 280, Col 23: A “charset” attribute on a “meta” element found after the first 1024 bytes.
+[ERROR] Line 280, Col 24: Attribute “charset” not allowed on element “meta” at this point.
+[ERROR] Line 280, Col 24: Element “meta” is missing one or more of the following attributes: “content”, “itemprop”, “property”.
+[ERROR] Line 281, Col 9: Element “title” not allowed as child of element “body” in this context. (Suppressing further 
+errors from this subtree.)
+[ERROR] Line 282, Col 9: Element “style” not allowed as child of element “body” in this context. (Suppressing further 
+errors from this subtree.)
+[ERROR] Line 320, Col 7: Stray end tag “head”.
+[ERROR] Line 321, Col 6: Start tag “body” seen but an element of the same type was already open.
+[ERROR] Line 1043, Col 8: Stray end tag “think”.
+[ERROR] Line 1043, Col 8: Stray end tag “think”.
+[ERROR] Line 1050, Col 21: Stray start tag “thead”.
+[ERROR] Line 1050, Col 35: Stray start tag “tbody”.
+[ERROR] Line 1052, Col 23: Stray start tag “caption”.
+[ERROR] Line 1057, Col 15: Stray doctype.
+[ERROR] Line 1058, Col 16: Stray start tag “html”.
+[ERROR] Line 1059, Col 6: Stray start tag “head”.
+[ERROR] Line 1060, Col 23: A “charset” attribute on a “meta” element found after the first 1024 bytes.
+[ERROR] Line 1060, Col 24: Attribute “charset” not allowed on element “meta” at this point.
+[ERROR] Line 1060, Col 24: Element “meta” is missing one or more of the following attributes: “content”, “itemprop”, “property”.
+[ERROR] Line 1060, Col 24: A document must not include more than one “meta” element with a “charset” attribute.       
+[ERROR] Line 1061, Col 9: Element “title” not allowed as child of element “body” in this context. (Suppressing further errors from this subtree.)
+[ERROR] Line 1062, Col 9: Element “style” not allowed as child of element “body” in this context. (Suppressing further errors from this subtree.)
+[ERROR] Line 1082, Col 7: Stray end tag “head”.
+[ERROR] Line 1083, Col 6: Start tag “body” seen but an element of the same type was already open.
+[ERROR] Line 1152, Col 10: Bad character “ ” after “<”. Probable cause: Unescaped “<”. Try escaping it as “&lt;”.     
+[ERROR] Line 1152, Col 14: Misplaced non-space characters inside a table.
+[ERROR] Line 1152, Col 14: Cannot recover after last error. Any further errors will be ignored.
+```
