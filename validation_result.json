@@ -2,16 +2,155 @@
     "version": "26.3.17",
     "messages": [
         {
-            "type": "info",
+            "type": "error",
+            "lastLine": 1,
+            "lastColumn": 7,
+            "firstColumn": 1,
+            "message": "Non-space characters found without seeing a doctype first. Expected \u201c<!DOCTYPE html>\u201d.",
+            "extract": "```html\n<!DOC",
+            "hiliteStart": 0,
+            "hiliteLength": 7
+        },
+        {
+            "type": "error",
+            "lastLine": 1,
+            "lastColumn": 7,
+            "firstColumn": 1,
+            "message": "Element \u201chead\u201d is missing a required instance of child element \u201ctitle\u201d.",
+            "extract": "```html\n<!DOC",
+            "hiliteStart": 0,
+            "hiliteLength": 7
+        },
+        {
+            "type": "error",
             "lastLine": 2,
-            "firstLine": 1,
+            "lastColumn": 15,
+            "firstColumn": 1,
+            "message": "Stray doctype.",
+            "extract": "```html\n<!DOCTYPE html>\n<html",
+            "hiliteStart": 8,
+            "hiliteLength": 15
+        },
+        {
+            "type": "error",
+            "lastLine": 3,
             "lastColumn": 6,
-            "firstColumn": 16,
-            "subType": "warning",
-            "message": "Consider adding a \u201clang\u201d attribute to the \u201chtml\u201d start tag to declare the language of this document.",
-            "extract": "type html>\n<html>\n\t<hea",
+            "firstColumn": 1,
+            "message": "Stray start tag \u201chtml\u201d.",
+            "extract": "YPE html>\n<html>\n<head",
+            "hiliteStart": 10,
+            "hiliteLength": 6
+        },
+        {
+            "type": "error",
+            "lastLine": 4,
+            "lastColumn": 6,
+            "firstColumn": 1,
+            "message": "Stray start tag \u201chead\u201d.",
+            "extract": "l>\n<html>\n<head>\n  <ti",
+            "hiliteStart": 10,
+            "hiliteLength": 6
+        },
+        {
+            "type": "error",
+            "lastLine": 5,
+            "lastColumn": 9,
+            "firstColumn": 3,
+            "message": "Element \u201ctitle\u201d not allowed as child of element \u201cbody\u201d in this context. (Suppressing further errors from this subtree.)",
+            "extract": "\n<head>\n  <title>Video ",
             "hiliteStart": 10,
             "hiliteLength": 7
+        },
+        {
+            "type": "error",
+            "lastLine": 6,
+            "lastColumn": 72,
+            "firstColumn": 3,
+            "message": "Attribute \u201cname\u201d not allowed on element \u201cmeta\u201d at this point.",
+            "extract": "/title>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <st",
+            "hiliteStart": 10,
+            "hiliteLength": 70
+        },
+        {
+            "type": "error",
+            "lastLine": 6,
+            "lastColumn": 72,
+            "firstColumn": 3,
+            "message": "Element \u201cmeta\u201d is missing one or more of the following attributes: \u201citemprop\u201d, \u201cproperty\u201d.",
+            "extract": "/title>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <st",
+            "hiliteStart": 10,
+            "hiliteLength": 70
+        },
+        {
+            "type": "error",
+            "lastLine": 7,
+            "lastColumn": 9,
+            "firstColumn": 3,
+            "message": "Element \u201cstyle\u201d not allowed as child of element \u201cbody\u201d in this context. (Suppressing further errors from this subtree.)",
+            "extract": "e=1.0\">\n  <style>\n    b",
+            "hiliteStart": 10,
+            "hiliteLength": 7
+        },
+        {
+            "type": "error",
+            "lastLine": 43,
+            "lastColumn": 7,
+            "firstColumn": 1,
+            "message": "Stray end tag \u201chead\u201d.",
+            "extract": " </style>\n</head>\n<body",
+            "hiliteStart": 10,
+            "hiliteLength": 7
+        },
+        {
+            "type": "error",
+            "lastLine": 44,
+            "lastColumn": 6,
+            "firstColumn": 1,
+            "message": "Start tag \u201cbody\u201d seen but an element of the same type was already open.",
+            "extract": ">\n</head>\n<body>\n\n  <d",
+            "hiliteStart": 10,
+            "hiliteLength": 6
+        },
+        {
+            "type": "error",
+            "lastLine": 47,
+            "lastColumn": 59,
+            "message": "Duplicate attribute \u201cmuted\u201d.",
+            "extract": "uted loop muted>\n      <source",
+            "hiliteStart": 15,
+            "hiliteLength": 1
+        },
+        {
+            "type": "error",
+            "lastLine": 94,
+            "lastColumn": 3,
+            "firstColumn": 1,
+            "message": "Non-space character in page trailer.",
+            "extract": ">\n</html>\n```\n\nKey ",
+            "hiliteStart": 10,
+            "hiliteLength": 3
+        },
+        {
+            "type": "error",
+            "lastLine": 107,
+            "lastColumn": 37,
+            "firstColumn": 30,
+            "message": "Element \u201csource\u201d not allowed as child of element \u201cbody\u201d in this context. (Suppressing further errors from this subtree.)",
+            "extract": "Uses the `<source>` tag ",
+            "hiliteStart": 10,
+            "hiliteLength": 8
+        },
+        {
+            "type": "info",
+            "lastLine": 1,
+            "lastColumn": 7,
+            "firstColumn": 1,
+            "subType": "warning",
+            "message": "This document appears to be written in English. Consider adding \u201clang=\"en\"\u201d (or variant) to the \u201chtml\u201d start tag.",
+            "extract": "```html\n<!DOC",
+            "hiliteStart": 0,
+            "hiliteLength": 7
         }
-    ]
+    ],
+    "language": "en"
 }
