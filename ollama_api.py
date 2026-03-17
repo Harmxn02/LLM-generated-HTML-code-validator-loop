@@ -41,7 +41,7 @@ def generate_html(model_name: str, prompt: str, output_path: str):
 
 	for chunk in stream:
 		content = chunk.get("message", {}).get("content", "")
-		print(content, end="", flush=True)
+		# print(content, end="", flush=True)
 		html_output += content
 
 	with open(output_path, "w", encoding="utf-8") as f:
@@ -132,7 +132,7 @@ if __name__ == "__main__":
 
 		# HTML Generation
 		generate_html(
-			model_name="gemma3:1b",  # qwen3:8b, gemma3:1b
+			model_name="qwen3:8b",  # qwen3:8b, gemma3:1b
 			prompt=prompt,
 			output_path=output_path,
 		)
