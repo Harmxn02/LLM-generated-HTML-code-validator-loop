@@ -2,6 +2,69 @@
 
 # LLM Generated HTML Code Validator Loop
 
+## Voorbeeld van feedback-loop die compleet werkt
+
+Bij deze run werden initieel 5 errors gevonden, maar na het toepassen van 1 feedback-loop, zijn alle errors opgelost en zijn er 0 warnings. De feedback-loop lijkt hier dus volledig te werken.
+
+``` powershell
+PS C:\Users\Harman\<project_path>\LLM Validator> python main.py --local
+
+==================================================
+STEP 1 — Generating initial HTML
+==================================================
+
+
+HTML saved to ./html/generated_2026-03-17_16-25-29.html
+
+==================================================
+STEP 2 — Validating initial HTML
+==================================================
+
+Validation results saved to ./validation/validation_2026-03-17_16-25-29.json
+==================================================
+Errors:   5
+Warnings: 0
+Info:     0
+==================================================
+
+[ERROR] Line 1, Col 142: Non-space characters found without seeing a doctype first. Expected “<!DOCTYPE html>”.
+[ERROR] Line 1, Col 142: Element “head” is missing a required instance of child element “title”.
+[ERROR] Line 4, Col 15: Stray doctype.
+[ERROR] Line 5, Col 16: Stray start tag “html”.
+[ERROR] Line 5, Col 16: Cannot recover after last error. Any further errors will be ignored.
+
+==================================================
+STEP 3 — Re-generating HTML using validation feedback
+==================================================
+
+
+HTML saved to ./html/reprompt/reprompted_2026-03-17_16-25-29.html
+
+==================================================
+STEP 4 — Validating reprompted HTML
+==================================================
+
+Validation results saved to ./validation/reprompt/validation_reprompted_2026-03-17_16-25-29.json
+==================================================
+Errors:   0
+Warnings: 0
+Info:     0
+==================================================
+
+
+==================================================
+REPROMPT COMPARISON
+==================================================
+Metric         Before    After        Δ
+----------------------------------------
+Errors              5        0       -5
+Warnings            0        0        0
+Infos               0        0        0
+==================================================
+
+PS C:\Users\Harman\<project_path>\LLM Validator>
+```
+
 ## Voorbeeld van feedback-loop die (gedeeltelijk) werkt
 
 De code die initieel gegenereerd werd, bevatte 14 errors en 1 warning. Na het toepasses van de feedback-loop, resteren er nog `maar' 5 errors en 0 warnings. De meeste errors zijn na 1 feedback-loop opgelost.
@@ -27,7 +90,7 @@ De code die initieel gegenereerd werd, bevatte 14 errors en 1 warning. Na het to
 > [!NOTE]
 > Twee simpele trial-runs met `gemma3:1b` toonde geen verbetering, maar de test met bovenstaande resultaten gebruikte `qwen3:8b`. Ik kan nog niet met zekerheid zeggen waardoor dit verschil komt, wegens het beperkte aantal runs.
 
-```bash
+``` powershell
 PS C:\Users\Harman\<project_path>\LLM Validator> python loop.py --local
 
 ==================================================
