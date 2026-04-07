@@ -24,11 +24,14 @@ parser.add_argument(
 	action="store_true",
 	help="Use a local W3C validator in Docker instead of the cloud API.",
 )
-
 parser.add_argument(
 	"--validate-and-regenerate",
-	action="store_true",
-	help="Validate an existing HTML file, then automatically build a reprompt and re-generate",
+	nargs="?",
+	type=int,
+	const=1,
+	default=None,
+	metavar="N",
+	help="Validate an existing HTML file, then automatically build a reprompt and re-generate N times (default: 1).",
 )
 
 
@@ -61,13 +64,16 @@ if __name__ == "__main__":
 		)
 		parse_validation_results(validation_path)
 
-	elif args.validate_and_regenerate:
-		# ── Validate existing file, reprompt, re-generate, then validate again ─
+	elif args.validate_and_regenerate is not None:
+		# ── Validate existing file, reprompt, re-generate N times ─────────────
 		os.makedirs(HTML_REPROMPT_DIR, exist_ok=True)
 		os.makedirs(VALIDATION_DIR, exist_ok=True)
 		os.makedirs(VALIDATION_REPROMPT_DIR, exist_ok=True)
 
-		# ── Step 1: Validate existing HTML ────────────────────────────────────
+		n_iterations = args.validate_and_regenerate
+		prompt = choose_prompt(PROMPTS_PATH)
+
+		# ── Step 1: Validate the initial file ─────────────────────────────────
 		section_print("STEP 1 — Validating existing HTML")
 
 		initial_validation_path = f"{VALIDATION_DIR}/validation_{timestamp}.json"
@@ -79,37 +85,45 @@ if __name__ == "__main__":
 		parse_validation_results(initial_validation_path)
 		before = summarise_validation(initial_validation_path)
 
-		# ── Step 2: Reprompt and re-generate HTML ─────────────────────────────
-		section_print("STEP 2 — Re-generating HTML using validation feedback")
+		current_html_path = VALIDATE_ONLY_FILE
+		current_validation_path = initial_validation_path
 
-		prompt = choose_prompt(PROMPTS_PATH)
-		reprompt = build_reprompt(
-			original_html_path=VALIDATE_ONLY_FILE,
-			validation_path=initial_validation_path,
-			original_prompt=prompt,
-		)
-		reprompted_html_path = f"{HTML_REPROMPT_DIR}/reprompted_{timestamp}.html"
-		generate_html(
-			model_name=MODEL_NAME, prompt=reprompt, output_path=reprompted_html_path
-		)
+		for i in range(1, n_iterations + 1):
+			# ── Regenerate ────────────────────────────────────────────────────
+			section_print(
+				f"ITERATION {i}/{n_iterations} — Re-generating HTML using validation feedback"
+			)
 
-		# ── Step 3: Validate reprompted HTML ──────────────────────────────────
-		section_print("STEP 3 — Validating reprompted HTML")
+			reprompt = build_reprompt(
+				original_html_path=current_html_path,
+				validation_path=current_validation_path,
+				original_prompt=prompt,
+			)
+			reprompted_html_path = (
+				f"{HTML_REPROMPT_DIR}/reprompted_{timestamp}_iter{i}.html"
+			)
+			generate_html(
+				model_name=MODEL_NAME, prompt=reprompt, output_path=reprompted_html_path
+			)
 
-		reprompted_validation_path = (
-			f"{VALIDATION_REPROMPT_DIR}/validation_reprompted_{timestamp}.json"
-		)
-		validate_html(
-			html_path=reprompted_html_path,
-			validator=validator,
-			validation_output_path=reprompted_validation_path,
-		)
-		parse_validation_results(reprompted_validation_path)
-		after = summarise_validation(reprompted_validation_path)
+			# ── Validate ──────────────────────────────────────────────────────
+			section_print(f"ITERATION {i}/{n_iterations} — Validating reprompted HTML")
 
-		# ── Step 4: Before/after comparison ───────────────────────────────────
-		section_print("REPROMPT COMPARISON")
+			reprompted_validation_path = f"{VALIDATION_REPROMPT_DIR}/validation_reprompted_{timestamp}_iter{i}.json"
+			validate_html(
+				html_path=reprompted_html_path,
+				validator=validator,
+				validation_output_path=reprompted_validation_path,
+			)
+			parse_validation_results(reprompted_validation_path)
 
+			current_html_path = reprompted_html_path
+			current_validation_path = reprompted_validation_path
+
+		# ── Final before/after comparison ─────────────────────────────────────
+		section_print(f"REPROMPT COMPARISON (after {n_iterations} iteration(s))")
+
+		after = summarise_validation(current_validation_path)
 		print(f"{'Metric':<12} {'Before':>8} {'After':>8} {'Δ':>8}")
 		print(f"{'-' * 40}")
 		for key in ("errors", "warnings", "infos"):

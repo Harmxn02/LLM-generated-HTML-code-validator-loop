@@ -2,13 +2,17 @@
 
 # LLM Generated HTML Code Validator Loop
 
+- [1 iteratie, werkt volledig](#voorbeeld-van-feedback-loop-die-compleet-werkt)
+- [1 iteratie, werkt gedeeltelijk](#voorbeeld-van-feedback-loop-die-gedeeltelijk-werkt)
+- [**3 iteraties, werkt volledig**](#voorbeeld-van-feedback-loop-met-meerdere-iteraties-die-volledig-werkt)
+
 ## Voorbeeld van feedback-loop die compleet werkt
 
 Bij deze run werden initieel 5 errors gevonden, maar na het toepassen van 1 feedback-loop, zijn alle errors opgelost en zijn er 0 warnings. De feedback-loop lijkt hier dus volledig te werken.
 
 Je kan de volledige output hieronder bekijken, of in dit bestand: [./logs/Full.txt](./logs/Full.txt)
 
-``` powershell
+```powershell
 PS C:\Users\Harman\<project_path>\LLM Validator> python main.py --local
 
 ==================================================
@@ -94,7 +98,7 @@ De code die initieel gegenereerd werd, bevatte 14 errors en 1 warning. Na het to
 
 Je kan de volledige output hieronder bekijken, of in dit bestand: [./logs/Partial.txt](./logs/Partial.txt)
 
-``` powershell
+```powershell
 PS C:\Users\Harman\<project_path>\LLM Validator> python loop.py --local
 
 ==================================================
@@ -166,4 +170,100 @@ Infos               0        0        0
 ==================================================
 
 PS C:\Users\Harman\<project_path>\LLM Validator>
+```
+
+## Voorbeeld van feedback-loop, met meerdere iteraties, die volledig werkt
+
+```powershell
+PS C:\Users\Harman\Desktop\LLM Validator> python main.py --local --validate-and-regenerate 3
+
+==================================================
+STEP 1 — Validating existing HTML
+==================================================
+
+Validation results saved to ./validation/validation_2026-04-07_20-10-22.json
+==================================================
+Errors:   5
+Warnings: 0
+Info:     0
+==================================================
+
+[ERROR] Line 1, Col 142: Non-space characters found without seeing a doctype first. Expected “<!DOCTYPE html>”.
+[ERROR] Line 1, Col 142: Element “head” is missing a required instance of child element “title”.
+[ERROR] Line 4, Col 15: Stray doctype.
+[ERROR] Line 5, Col 16: Stray start tag “html”.
+[ERROR] Line 5, Col 16: Cannot recover after last error. Any further errors will be ignored.
+
+==================================================
+ITERATION 1/3 — Re-generating HTML using validation feedback
+==================================================
+
+
+HTML saved to ./html/reprompt/reprompted_2026-04-07_20-10-22_iter1.html
+
+==================================================
+ITERATION 1/3 — Validating reprompted HTML
+==================================================
+
+Validation results saved to ./validation/reprompt/validation_reprompted_2026-04-07_20-10-22_iter1.json
+==================================================
+Errors:   5
+Warnings: 0
+Info:     0
+==================================================
+
+[ERROR] Line 1, Col 7: Non-space characters found without seeing a doctype first. Expected “<!DOCTYPE html>”.
+[ERROR] Line 1, Col 7: Element “head” is missing a required instance of child element “title”.
+[ERROR] Line 2, Col 15: Stray doctype.
+[ERROR] Line 3, Col 16: Stray start tag “html”.
+[ERROR] Line 3, Col 16: Cannot recover after last error. Any further errors will be ignored.
+
+==================================================
+ITERATION 2/3 — Re-generating HTML using validation feedback
+==================================================
+
+
+HTML saved to ./html/reprompt/reprompted_2026-04-07_20-10-22_iter2.html
+
+==================================================
+ITERATION 2/3 — Validating reprompted HTML
+==================================================
+
+Validation results saved to ./validation/reprompt/validation_reprompted_2026-04-07_20-10-22_iter2.json
+==================================================
+Errors:   0
+Warnings: 0
+Info:     0
+==================================================
+
+
+==================================================
+ITERATION 3/3 — Re-generating HTML using validation feedback
+==================================================
+
+
+HTML saved to ./html/reprompt/reprompted_2026-04-07_20-10-22_iter3.html
+
+==================================================
+ITERATION 3/3 — Validating reprompted HTML
+==================================================
+
+Validation results saved to ./validation/reprompt/validation_reprompted_2026-04-07_20-10-22_iter3.json
+==================================================
+Errors:   0
+Warnings: 0
+Info:     0
+==================================================
+
+
+==================================================
+REPROMPT COMPARISON (after 3 iteration(s))
+==================================================
+
+Metric         Before    After        Δ
+----------------------------------------
+Errors              5        0       -5
+Warnings            0        0        0
+Infos               0        0        0
+==================================================
 ```
