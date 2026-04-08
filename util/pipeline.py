@@ -1,7 +1,7 @@
 from util.generation import generate_html
 from util.print_functions import section_print
 from util.prompts import build_reprompt
-from util.validation import parse_validation_results, validate_html
+from util.validation import parse_validation_results, validate_html, summarise_validation
 
 
 def validate_and_parse(html_path, validator, output_path):
@@ -27,7 +27,9 @@ def print_comparison(before, after, n_iterations=1):
 	for key in ("errors", "warnings", "infos"):
 		delta = after[key] - before[key]
 		sign = "+" if delta > 0 else ""
-		print(f"{key.capitalize():<12} {before[key]:>8} {after[key]:>8} {sign + str(delta):>8}")
+		print(
+			f"{key.capitalize():<12} {before[key]:>8} {after[key]:>8} {sign + str(delta):>8}"
+		)
 	print(f"{'=' * 50}\n")
 
 
@@ -43,10 +45,10 @@ def run_reprompt_loop(
 	timestamp,
 ):
 	"""
-	Run the reprompt → generate → validate cycle N times.
+	Run the reprompt → generate → validate cycle up to N times, stopping early
+	if all errors, warnings, and infos are resolved.
 
-	Returns a tuple of (final_html_path, final_validation_path) after all
-	iterations are complete.
+	Returns a tuple of (final_html_path, final_validation_path).
 	"""
 	current_html_path = html_path
 	current_validation_path = validation_path
@@ -61,12 +63,21 @@ def run_reprompt_loop(
 			original_prompt=prompt,
 		)
 		current_html_path = f"{html_reprompt_dir}/reprompted_{timestamp}_iter{i}.html"
-		generate_html(model_name=model_name, prompt=reprompt, output_path=current_html_path)
+		generate_html(
+			model_name=model_name, prompt=reprompt, output_path=current_html_path
+		)
 
 		section_print(f"ITERATION {i}/{n_iterations} — Validating reprompted HTML")
 		current_validation_path = (
 			f"{validation_reprompt_dir}/validation_reprompted_{timestamp}_iter{i}.json"
 		)
 		validate_and_parse(current_html_path, validator, current_validation_path)
+
+		summary = summarise_validation(current_validation_path)
+		if all(summary[key] == 0 for key in ("errors", "warnings", "infos")):
+			section_print(
+				f"ITERATION {i}/{n_iterations} — All issues resolved, stopping early"
+			)
+			break
 
 	return current_html_path, current_validation_path
