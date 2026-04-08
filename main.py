@@ -45,7 +45,7 @@ HTML_REPROMPT_DIR = "./html/reprompt"
 VALIDATION_DIR = "./validation"
 VALIDATION_REPROMPT_DIR = "./validation/reprompt"
 
-MODEL_NAME = "gemma4:e2b"  # qwen3:8b, qwen2.5-coder:14b, gemma4:e2b
+MODEL_NAME = "gemma4:e2b"  # qwen3:8b, gemma4:e2b, qwen3.5:9b (❌ qwen2.5-coder:14b)
 PROMPTS_PATH = "./prompts/prompts.json"
 VALIDATE_ONLY_FILE = "./html/reprompt/generated_2026-03-17_16-25-29.html"
 
