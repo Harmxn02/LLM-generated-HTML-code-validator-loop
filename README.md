@@ -174,8 +174,10 @@ PS C:\Users\Harman\<project_path>\LLM Validator>
 
 ## Voorbeeld van feedback-loop, met meerdere iteraties, die volledig werkt
 
+Je kan de volledige output hieronder bekijken, of in dit bestand: [./logs/Full-loop.txt](./logs/Full-loop.txt)
+
 ```powershell
-PS C:\Users\Harman\Desktop\LLM Validator> python main.py --local --validate-and-regenerate 3
+PS C:\Users\Harman\<project_path>\LLM Validator> python main.py --local --validate-and-regenerate 3
 
 ==================================================
 STEP 1 — Validating existing HTML
